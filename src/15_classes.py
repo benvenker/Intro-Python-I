@@ -4,7 +4,7 @@
 # YOUR CODE HERE
 
 
-class LatLon(object):
+class LatLon:
     def __init__(self, lat, lon):
         self.lat = lat
         self.lon = lon
@@ -15,10 +15,13 @@ class LatLon(object):
 # YOUR CODE HERE
 
 
-class WayPoint(lat, lon, name):
-    def __init__(self, lat, lon, name):
-        super().__init__(lat, lon, name)
-        self.location = location
+class WayPoint(LatLon):
+    def __init__(self, name, lat, lon):
+        super().__init__(lat, lon)
+        self.name = name
+
+    def __str__(self):
+        return f"<Waypoint {self.name}, {self.lat}, {self.lon}>"
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
@@ -26,12 +29,17 @@ class WayPoint(lat, lon, name):
 # YOUR CODE HERE
 
 
-class GeoCache(WayPoint, difficulty):
-    def __init__(self,):
-        WayPoint.__init__(self)
+class GeoCache(WayPoint):
+    def __init__(self, name, difficulty, size, lat, lon):
+        super().__init__(name, lat, lon)
+        self.size = size
+        self.difficulty = difficulty
+
+    def __str__(self):
+        return f"<Geocache {self.name}, {self.difficulty}, {self.size}, {self.lat}, {self.lon}"
 
 
-        # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
+# Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 waypoint = WayPoint(41.70505, -121.51521, "Catacombs")
 # YOUR CODE HERE
 
@@ -43,6 +51,7 @@ print(waypoint)
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # YOUR CODE HERE
+geocache = GeoCache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
 
 # Print it--also make this print more nicely
 print(geocache)
