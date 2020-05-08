@@ -30,3 +30,20 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+year = datetime.now().year
+month = datetime.now().month
+# If the user provides no input, return current month's
+if len(sys.argv) > 3:
+    print("Please provide inputs of the format <M> <YYYY>")
+
+if len(sys.argv) == 1:
+    print(calendar.month(year, month))
+print(f'Script name is {sys.argv[0]}')
+
+if len(sys.argv) == 2:
+    print(calendar.month(year, int(sys.argv[1])))
+
+if len(sys.argv) == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))

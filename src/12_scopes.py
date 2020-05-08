@@ -4,21 +4,26 @@
 # When you use a variable in a function, it's local in scope to the function.
 x = 12
 
-def change_x():
+
+def change_x(var):
+    global x
     x = 99
 
-change_x()
+
+change_x(x)
 
 # This prints 12. What do we have to modify in change_x() to get it to print 99?
 print(x)
-
+# pass in x to change_x
 
 # This nested function has a similar problem.
+
 
 def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
